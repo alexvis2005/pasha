@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Светлая Пасха - Православная гимназия Иркутск</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="magic-bg"></div>
+    <div class="floating-particles"></div>
+    
+    <div class="container">
+        <!-- Форма ввода имени -->
+        <div class="name-form-card">
+            <div class="form-content">
+                <div class="form-icon"></div>
+                <h3>Введите ваше имя</h3>
+                <p>Чтобы получить персональное пасхальное поздравление</p>
+                <div class="input-group">
+                    <input type="text" id="userName" placeholder="Ваше имя..." maxlength="50">
+                    <button id="saveNameBtn">Сохранить имя</button>
+                </div>
+                <div id="greetingMessage" class="personal-greeting"></div>
+            </div>
+        </div>
+
+        <!-- Главное поздравление -->
+        <div class="easter-card" id="easterCard">
+            <div class="images-wrapper">
+                <img src="images/holy.jpg" alt="Христос Воскресе!" class="holy-image">
+                <img src="images/hristos.jpg" alt="Святая Пасха" class="holy-image">
+            </div>
+            <h1>ХРИСТОС ВОСКРЕСЕ!</h1>
+            <div class="greeting-text" id="dynamicGreeting">
+                Дорогие братья и сестры города Иркутска!<br><br>
+                Сердечно поздравляем вас со Светлым Христовым Воскресением! Пасха Господня — победа жизни, радость и надежда. 
+                Пусть благодать Воскресшего Спасителя наполняет ваши сердца, семьи и classrooms небесным миром и любовью. 
+                Желаем вам крепкой веры, пасхальной радости и щедрых даров Святого Духа!
+            </div>
+            <p class="angel-verse">«Ангел восклицал Благодатной: Чистая Дева, радуйся! и паки реку: радуйся! Твой Сын воскрес тридневен от гроба»</p>
+        </div>
+
+        <!-- GIF изображения (увеличенные) -->
+        <div class="gif-gallery">
+            <div class="gif-card">
+                <img src="images/1.gif" alt="Пасхальная анимация" class="easter-gif large-gif">
+                <div class="gif-caption">Светлая радость</div>
+            </div>
+            <div class="gif-card">
+                <img src="images/2.gif" alt="Пасхальная анимация" class="easter-gif large-gif">
+                <div class="gif-caption">Пасхальное чудо</div>
+            </div>
+            
+        </div>
+
+        <!-- Православный тест -->
+        <div class="test-section">
+            <h2>📖 Православный пасхальный тест</h2>
+            <p class="test-description">Проверьте свои знания о Светлом Христовом Воскресении и традициях Православной Церкви</p>
+            <div id="testContainer"></div>
+            <button id="submitTest">Показать результат</button>
+            <div id="testResult" class="result"></div>
+        </div>
+
+        <!-- Дополнительный декоративный GIF -->
+        <div class="decorative-gif">
+            <img src="images/3.gif" alt="Пасхальный кулич" class="featured-gif">
+        </div>
+
+        <footer>
+            🕊️ Православная гимназия г. Иркутск | С Пасхой Христовой! 🕊️<br>
+            «Смерть! где твое жало? ад! где твоя победа?» (1 Кор 15:55)
+        </footer>
+    </div>
+
+    <script src="js/scrypt.js"></script>
+</body>
+</html>
