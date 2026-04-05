@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Пасхальный квест | Сайт №2 | Задание второго QR-кода</title>
     <style>
         * {
@@ -12,9 +12,9 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Georgia', 'Times New Roman', 'Palatino', serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Georgia', 'Times New Roman', serif;
             min-height: 100vh;
-            padding: 20px;
+            padding: 16px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* Анимированный фон — ускоренные частицы */
+        /* Анимированный фон */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -65,51 +65,44 @@
 
         /* Основная карточка */
         .site-card {
-            max-width: 720px;
+            max-width: 650px;
             width: 100%;
-            margin: 20px auto;
+            margin: 0 auto;
             background: rgba(255, 252, 245, 0.97);
             backdrop-filter: blur(2px);
-            border-radius: 56px;
-            box-shadow: 0 40px 70px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 215, 150, 0.3), 0 0 0 4px rgba(200, 130, 50, 0.2);
+            border-radius: 48px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 215, 150, 0.3);
             overflow: hidden;
             position: relative;
             z-index: 2;
-            transition: transform 0.3s ease;
-        }
-
-        .site-card:hover {
-            transform: translateY(-4px);
         }
 
         /* Шапка */
         .easter-header {
             background: linear-gradient(135deg, #b55a1a, #7a3a0c);
-            padding: 28px 20px 24px;
+            padding: 24px 16px 20px;
             text-align: center;
             color: #ffefcf;
             border-bottom: 3px solid #e6b87e;
-            position: relative;
         }
 
         .easter-header h1 {
-            font-size: 2rem;
-            letter-spacing: 4px;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
             font-family: 'Georgia', 'Times New Roman', serif;
             font-weight: normal;
-            text-shadow: 2px 2px 0 #4a2800;
-            margin: 8px 0;
+            text-shadow: 1px 1px 0 #4a2800;
+            margin: 6px 0;
         }
 
         .greeting {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-style: italic;
-            letter-spacing: 1px;
         }
 
         /* Страницы */
         .page {
-            padding: 32px 30px;
+            padding: 24px 20px;
             transition: opacity 0.25s ease;
             background: #fffcf5;
         }
@@ -122,32 +115,23 @@
         .nav-buttons {
             display: flex;
             justify-content: space-between;
-            padding: 12px 30px 30px;
+            padding: 8px 20px 24px;
             background: #fffcf5;
-            gap: 20px;
+            gap: 16px;
         }
 
         button {
             background: #e7cba5;
             border: none;
-            padding: 12px 28px;
-            border-radius: 48px;
+            padding: 10px 20px;
+            border-radius: 40px;
             font-weight: bold;
-            font-size: 1rem;
-            font-family: 'Segoe UI', 'Georgia', serif;
+            font-size: 0.9rem;
+            font-family: inherit;
             color: #3e2a1a;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        button:hover {
-            background: #dcb477;
-            transform: scale(1.02);
-            color: #2a1a0a;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
         }
 
         button:active {
@@ -157,33 +141,30 @@
         button.primary {
             background: #c2691e;
             color: #fff2e0;
-            box-shadow: 0 4px 0 #733f0e;
+            box-shadow: 0 3px 0 #733f0e;
         }
 
-        button.primary:hover {
-            background: #d47a2c;
-        }
-
-        /* Стили для контента */
+        /* Контент */
         h2, h3 {
             font-family: 'Georgia', 'Times New Roman', serif;
             color: #9b4a1a;
-            letter-spacing: 1px;
-            border-left: 5px solid #d69648;
-            padding-left: 18px;
-            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+            border-left: 4px solid #d69648;
+            padding-left: 14px;
+            margin-bottom: 16px;
+            font-size: 1.3rem;
         }
 
         .task-list {
             list-style: none;
-            margin: 20px 0;
+            margin: 16px 0;
         }
 
         .task-list li {
-            margin: 16px 0;
-            font-size: 1.05rem;
-            line-height: 1.45;
-            padding-left: 28px;
+            margin: 12px 0;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            padding-left: 24px;
             position: relative;
             color: #2c241a;
         }
@@ -192,155 +173,141 @@
             content: "•";
             color: #c27e3a;
             position: absolute;
-            left: 8px;
-            font-size: 1.4rem;
+            left: 6px;
+            font-size: 1.2rem;
         }
 
         .qr-sticker {
             background: #efe2cf;
-            border-radius: 32px;
-            padding: 16px 20px;
+            border-radius: 28px;
+            padding: 12px 16px;
             text-align: center;
-            font-size: 0.95rem;
-            margin-top: 24px;
+            font-size: 0.85rem;
+            margin-top: 20px;
             border: 1px solid #e2cbaa;
             color: #5f3e1c;
-            font-style: italic;
         }
 
-        /* Блок выбора */
         .choice-block {
             background: #faf0e2;
-            border-radius: 48px;
-            padding: 24px 20px;
-            margin: 20px 0;
+            border-radius: 40px;
+            padding: 20px 16px;
+            margin: 16px 0;
             text-align: center;
         }
 
         .choice-buttons {
             display: flex;
-            gap: 20px;
+            gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
-            margin: 20px 0 10px;
+            margin: 16px 0 8px;
         }
 
         .choice-btn {
             background: #e7d5bc;
-            padding: 14px 24px;
-            border-radius: 60px;
+            padding: 10px 18px;
+            border-radius: 50px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 0.85rem;
             border: none;
             cursor: pointer;
-            transition: 0.2s;
             font-family: inherit;
-            min-width: 220px;
+            min-width: 170px;
         }
 
         .choice-btn.active {
             background: #c2691e;
             color: white;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
         }
 
         .randomizer-box {
             background: #fef3e6;
-            border-radius: 44px;
-            padding: 26px 20px;
+            border-radius: 36px;
+            padding: 20px 16px;
             text-align: center;
-            margin: 20px 0;
+            margin: 16px 0;
             border: 1px solid #e7cfaa;
         }
 
         .color-badge {
             display: inline-block;
-            padding: 12px 32px;
-            border-radius: 60px;
+            padding: 8px 24px;
+            border-radius: 50px;
             font-weight: bold;
-            font-size: 1.8rem;
-            margin-top: 16px;
+            font-size: 1.3rem;
+            margin-top: 12px;
             background: white;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-            font-family: monospace;
-            letter-spacing: 2px;
-            word-break: keep-all;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
         }
 
         .manual-select {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
-            margin: 18px 0 8px;
+            margin: 16px 0 8px;
         }
 
         .color-option-btn {
             background: #f5e5d0;
             border: 1px solid #ddb982;
-            padding: 10px 22px;
-            border-radius: 50px;
+            padding: 8px 18px;
+            border-radius: 40px;
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             cursor: pointer;
-            transition: 0.15s;
             font-family: inherit;
             color: #4f3118;
         }
 
-        .color-option-btn:hover {
-            background: #e9cfaa;
-            transform: translateY(-2px);
+        .color-option-btn:active {
+            transform: scale(0.95);
         }
 
         .team-color-highlight {
             background: #f7ecdd;
-            border-left: 8px solid #d49146;
-            padding: 16px 20px;
-            border-radius: 28px;
-            margin: 24px 0;
+            border-left: 6px solid #d49146;
+            padding: 12px 16px;
+            border-radius: 24px;
+            margin: 16px 0;
             color: #4d2f12;
+            font-size: 0.9rem;
         }
 
         .task-block {
             background: #fef4e8;
-            border-radius: 44px;
-            padding: 26px 26px;
-            margin: 24px 0;
+            border-radius: 36px;
+            padding: 20px;
+            margin: 20px 0;
             border: 1px solid #f0dcbf;
         }
 
         .code2-task-card {
             background: #fff7ed;
-            padding: 24px;
-            border-radius: 40px;
+            padding: 18px;
+            border-radius: 32px;
             text-align: center;
-            margin-top: 16px;
+            margin-top: 12px;
             border: 1px solid #e6cfa8;
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
 
         .code2-text {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: #b35f1a;
-            font-family: 'Georgia', serif;
-            margin-top: 12px;
             background: #fffaef;
-            padding: 18px;
-            border-radius: 48px;
-            letter-spacing: 1px;
+            padding: 14px;
+            border-radius: 36px;
             word-wrap: break-word;
-            overflow-wrap: break-word;
-            white-space: normal;
-            line-height: 1.4;
+            line-height: 1.35;
         }
 
         .code2-text span {
             display: inline-block;
-            font-size: 1.7rem;
-            margin-top: 8px;
+            font-size: 1.3rem;
+            margin-top: 6px;
             word-break: break-word;
         }
 
@@ -348,36 +315,62 @@
             display: inline-block;
             background: #d49146;
             color: white;
-            padding: 6px 16px;
-            border-radius: 40px;
-            font-size: 0.8rem;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
             font-weight: bold;
-            margin-bottom: 16px;
-            letter-spacing: 1px;
+            margin-bottom: 14px;
         }
 
         .footer-small {
             text-align: center;
-            font-size: 0.7rem;
-            padding: 18px;
+            font-size: 0.65rem;
+            padding: 14px;
             background: #f9efdf;
             color: #9b6a3a;
             border-top: 1px solid #f0e0c8;
         }
 
+        /* Всплывающее уведомление */
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #2c5a1e;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 85%;
+            white-space: nowrap;
+        }
+
+        .toast-notification.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
         @media (max-width: 550px) {
-            .page { padding: 22px 18px; }
-            .easter-header h1 { font-size: 1.5rem; }
-            .code2-text { font-size: 1.1rem; }
-            .code2-text span { font-size: 1.3rem; }
-            button { padding: 8px 18px; }
-            .choice-btn { min-width: 180px; padding: 10px 16px; }
+            body { padding: 12px; }
+            .page { padding: 18px 16px; }
+            .easter-header h1 { font-size: 1.3rem; }
+            h2, h3 { font-size: 1.1rem; padding-left: 10px; }
+            .task-list li { font-size: 0.85rem; }
+            .code2-text { font-size: 0.95rem; padding: 10px; }
+            .code2-text span { font-size: 1.1rem; }
+            .choice-btn { min-width: 140px; font-size: 0.8rem; padding: 8px 12px; }
+            .color-option-btn { padding: 6px 14px; font-size: 0.8rem; }
+            .toast-notification { font-size: 0.8rem; padding: 10px 18px; white-space: normal; max-width: 90%; }
         }
     </style>
 </head>
 <body>
 
-<!-- Анимированный фон -->
 <div class="animated-bg">
     <div class="bg-glow"></div>
     <div class="floating-particle" style="width: 180px; height: 180px; top: 10%; left: -5%; animation-duration: 7s;"></div>
@@ -393,11 +386,11 @@
         <div class="greeting">Пасхальный конкурс</div>
     </div>
 
-    <!-- СТРАНИЦА 1: приветствие -->
+    <!-- СТРАНИЦА 1 -->
     <div id="page1" class="page">
         <h2>Дорогой друг!</h2>
         
-        <p>Мы предлагаем тебе поучаствовать в пасхальном конкурсе</p>
+        <p style="font-size:0.95rem;">Мы предлагаем тебе поучаствовать в пасхальном конкурсе</p>
         <ul class="task-list">
             <li>найди команду своего цвета</li>
             <li>собери все QR коды, их 5, это важно</li>
@@ -409,30 +402,28 @@
         </div>
     </div>
 
-    <!-- СТРАНИЦА 2: выбор цвета с двумя опциями -->
+    <!-- СТРАНИЦА 2: выбор цвета -->
     <div id="page2" class="page hidden">
         <div class="site-badge">◈ ВТОРОЙ QR-КОД ◈</div>
         <h3>определение цвета команды</h3>
         
         <div class="choice-block">
-            <p style="margin-bottom: 12px;"><strong>Это ваш первый QR-код или вы уже знаете цвет?</strong></p>
+            <p style="margin-bottom: 10px; font-size:0.9rem;"><strong>Это ваш первый QR-код или вы уже знаете цвет?</strong></p>
             <div class="choice-buttons">
                 <button id="firstQrBtn" class="choice-btn">📱 Это мой первый QR код</button>
-                <button id="knowColorBtn" class="choice-btn">🎨 Я уже знаю цвет своей команды</button>
+                <button id="knowColorBtn" class="choice-btn">🎨 Я знаю цвет команды</button>
             </div>
         </div>
 
-        <!-- Блок рандомайзера -->
         <div id="randomizerBlock" class="randomizer-box" style="display: none;">
-            <p style="font-size:1.1rem;">🎲 Случайный выбор цвета</p>
+            <p style="font-size:0.9rem;">🎲 Случайный выбор цвета</p>
             <button id="rollColorBtn" class="primary" style="background:#c2691e;">Получить цвет</button>
-            <div id="colorResult" style="margin-top: 20px;"></div>
+            <div id="colorResult" style="margin-top: 16px;"></div>
         </div>
 
-        <!-- Блок ручного выбора -->
         <div id="manualBlock" style="display: none;">
-            <div class="team-color-highlight" id="infoNoColorYet">
-                Выберите цвет вашей команды из списка:
+            <div class="team-color-highlight" id="infoNoColorYet" style="margin-bottom: 8px;">
+                Выберите цвет вашей команды:
             </div>
             <div class="manual-select" id="manualColorButtons">
                 <button data-color="красный" class="color-option-btn" style="background:#f0cfcf;">красный</button>
@@ -444,36 +435,35 @@
             </div>
         </div>
         
-        <div id="selectedColorInfo" class="team-color-highlight" style="margin-top: 16px; display: none;">
-            <!-- выбранный цвет -->
+        <div id="selectedColorInfo" class="team-color-highlight" style="margin-top: 12px; display: none; background:#e8f0e0; border-left-color:#6f9e3a;">
+            <!-- сюда будет подставлен выбранный цвет -->
         </div>
     </div>
 
-    <!-- СТРАНИЦА 3: задание по 2 КОДУ (с кем выполнять) -->
+    <!-- СТРАНИЦА 3: задание -->
     <div id="page3" class="page hidden">
         <div class="site-badge">◈ ВТОРОЙ QR-КОД — ЗАДАНИЕ ◈</div>
         <h3>задание вашей команды</h3>
         <div id="teamDisplayBlock" class="team-color-highlight">
-            Цвет команды: <strong><span id="currentTeamColorSpan" style="font-size:1.2rem;">—</span></strong>
+            Цвет команды: <strong><span id="currentTeamColorSpan" style="font-size:1rem;">—</span></strong>
         </div>
         
         <div class="task-block">
-            <p style="font-size:1.1rem; margin-bottom: 12px;"><strong>Вам нужно выполнить задание, выполнив ряд условий.</strong></p>
-            <p><strong>сказать хором (кодовую) фразу вместе с:</strong></p>
+            <p style="font-size:0.95rem; margin-bottom: 10px;"><strong>Вам нужно выполнить задание, выполнив ряд условий.</strong></p>
+            <p style="font-size:0.9rem;"><strong>сказать хором (кодовую) фразу вместе с:</strong></p>
             <div class="code2-task-card">
                 <div id="code2TaskDisplay" class="code2-text">
                     • выберите цвет команды •
                 </div>
             </div>
-            <p style="margin-top: 20px; font-size:0.9rem; color:#7a561f; text-align:center;">Задание со второго QR-кода. Запомните и выполните вместе с командой.</p>
+            <p style="margin-top: 16px; font-size:0.8rem; color:#7a561f; text-align:center;">Задание со второго QR-кода. Запомните и выполните вместе с командой.</p>
         </div>
 
         <div class="qr-sticker">
-            Напоминание: всего пять QR-кодов. Каждый открывает новое условие. Данный сайт показывает задание из второго кода: с кем нужно произнести фразу.
+            Напоминание: всего пять QR-кодов. Каждый открывает новое условие.
         </div>
     </div>
 
-    <!-- навигация -->
     <div class="nav-buttons">
         <button id="prevBtn" disabled>◀ Назад</button>
         <button id="nextBtn" class="primary">Вперёд ▶</button>
@@ -485,20 +475,11 @@
 
 <script>
     // --------------------------------------------------------------
-    // САЙТ №2: задание 2-го кода (с кем выполнять)
-    // Цвета: красный, синий, зеленый, желтый, фиолетовый, розовый
-    // Задания (без "ВМЕСТЕ С" - только РОДИТЕЛЯМИ и т.д.):
-    // 1 РОДИТЕЛЯМИ
-    // 2 КЛАССНЫМИ РУКОВОДИТЕЛЯМИ
-    // 3 ДУХОВЕНСТВОМ
-    // 4 РАБОТНИКАМИ ТЕАТРА
-    // 5 ЛЮДЬМИ НЕ ИЗ ГИМНАЗИИ
-    // 6 ЛЮДЬМИ В КРАСНОЙ ОДЕЖДЕ
+    // САЙТ №2: задание 2-го кода
     // --------------------------------------------------------------
     
     const colorList = ['красный', 'синий', 'зеленый', 'желтый', 'фиолетовый', 'розовый'];
     
-    // Обновлённые формулировки: без "ВМЕСТЕ С", просто существительные в творительном падеже
     const code2TaskMap = {
         'красный': 'РОДИТЕЛЯМИ',
         'синий': 'КЛАССНЫМИ РУКОВОДИТЕЛЯМИ',
@@ -513,7 +494,7 @@
     let teamColor = null;
     let selectionMode = null;
     
-    // DOM элементы
+    // DOM
     const page1 = document.getElementById('page1');
     const page2 = document.getElementById('page2');
     const page3 = document.getElementById('page3');
@@ -528,6 +509,25 @@
     const selectedColorInfo = document.getElementById('selectedColorInfo');
     const currentTeamColorSpan = document.getElementById('currentTeamColorSpan');
     const code2TaskDisplay = document.getElementById('code2TaskDisplay');
+    
+    // Функция показа всплывающего уведомления
+    function showToast(message, isError = false) {
+        const existingToast = document.querySelector('.toast-notification');
+        if (existingToast) existingToast.remove();
+        
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        if (isError) toast.style.background = '#a13d1a';
+        else toast.style.background = '#2c5a1e';
+        document.body.appendChild(toast);
+        
+        setTimeout(() => toast.classList.add('show'), 10);
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+        }, 2500);
+    }
     
     function getColorBg(colorName) {
         const map = {
@@ -567,8 +567,7 @@
         currentTeamColorSpan.innerText = teamColor.toUpperCase();
         const task = code2TaskMap[teamColor];
         if (code2TaskDisplay) {
-            // Корректный перенос текста — используем span с word-break
-            code2TaskDisplay.innerHTML = `<span style="display:inline-block; font-size:1.7rem; line-height:1.3; word-break:break-word;">${task}</span>`;
+            code2TaskDisplay.innerHTML = `<span style="display:inline-block; font-size:1.2rem; line-height:1.3; word-break:break-word;">${task}</span>`;
         }
     }
     
@@ -576,20 +575,25 @@
         teamColor = color;
         saveColor();
         
+        // Показываем заметное уведомление
+        showToast(`✓ Цвет команды: ${color.toUpperCase()}`);
+        
+        // Обновляем отображение на странице 2
         if (currentPage === 2) {
             if (selectionMode === 'random' && colorResultDiv) {
                 colorResultDiv.innerHTML = `
                     <div class="color-badge" style="background:${getColorBg(color)}; color:${getColorText(color)}">
                         ${color.toUpperCase()}
                     </div>
-                    <p style="margin-top:12px;">Цвет команды: <strong>${color}</strong></p>
                 `;
             }
             if (selectedColorInfo) {
                 selectedColorInfo.style.display = 'block';
-                selectedColorInfo.innerHTML = `✓ Выбран цвет команды: <strong>${color}</strong>. Теперь переходите на третью страницу.`;
-                selectedColorInfo.style.background = '#e8f0e0';
-                selectedColorInfo.style.borderLeftColor = '#6f9e3a';
+                selectedColorInfo.innerHTML = `✓ Выбран цвет команды: <strong>${color.toUpperCase()}</strong><br>Теперь переходите на третью страницу.`;
+                // Автоматически прокручиваем к уведомлению, чтобы пользователь его точно увидел
+                setTimeout(() => {
+                    selectedColorInfo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
             }
         }
         if (currentPage === 3) updateTaskDisplay();
@@ -617,7 +621,12 @@
     
     function manualHandler(e) {
         const col = e.currentTarget.getAttribute('data-color');
-        if (col && colorList.includes(col)) setTeamColor(col);
+        if (col && colorList.includes(col)) {
+            setTeamColor(col);
+            // Дополнительно подсветим нажатие
+            e.currentTarget.style.transform = 'scale(0.95)';
+            setTimeout(() => { if(e.currentTarget) e.currentTarget.style.transform = ''; }, 150);
+        }
     }
     
     function setSelectionMode(mode) {
@@ -632,14 +641,13 @@
                     <div class="color-badge" style="background:${getColorBg(teamColor)}; color:${getColorText(teamColor)}">
                         ${teamColor.toUpperCase()}
                     </div>
-                    <p style="margin-top:12px;">Цвет команды: <strong>${teamColor}</strong></p>
                 `;
             } else {
                 if (colorResultDiv) colorResultDiv.innerHTML = `<span style="opacity:0.7;">⚡ Нажмите «Получить цвет»</span>`;
             }
             if (selectedColorInfo) selectedColorInfo.style.display = teamColor ? 'block' : 'none';
             if (teamColor && selectedColorInfo) {
-                selectedColorInfo.innerHTML = `✓ Цвет команды: <strong>${teamColor}</strong>`;
+                selectedColorInfo.innerHTML = `✓ Цвет команды: <strong>${teamColor.toUpperCase()}</strong>`;
             }
         } else if (mode === 'manual') {
             randomizerBlock.style.display = 'none';
@@ -648,6 +656,9 @@
             firstQrBtn.classList.remove('active');
             if (selectedColorInfo) selectedColorInfo.style.display = teamColor ? 'block' : 'none';
             if (colorResultDiv) colorResultDiv.innerHTML = '';
+            if (teamColor && selectedColorInfo) {
+                selectedColorInfo.innerHTML = `✓ Цвет команды: <strong>${teamColor.toUpperCase()}</strong>`;
+            }
         }
     }
     
@@ -676,7 +687,7 @@
             }
             if (teamColor && selectionMode && selectedColorInfo) {
                 selectedColorInfo.style.display = 'block';
-                selectedColorInfo.innerHTML = `✓ Выбран цвет команды: <strong>${teamColor}</strong>`;
+                selectedColorInfo.innerHTML = `✓ Выбран цвет команды: <strong>${teamColor.toUpperCase()}</strong>`;
             }
         }
         if (currentPage === 3) updateTaskDisplay();
@@ -685,7 +696,7 @@
     function nextPage() {
         if (currentPage < totalPages) {
             if (currentPage === 2 && !teamColor) {
-                alert('Пожалуйста, выберите цвет команды (через рандомайзер или вручную)');
+                showToast('⚠️ Сначала выберите цвет команды', true);
                 return;
             }
             currentPage++;
@@ -693,10 +704,10 @@
             if (currentPage === 3 && !teamColor) {
                 currentPage--;
                 updatePages();
-                alert('Цвет команды не выбран. Вернитесь и выберите цвет.');
+                showToast('⚠️ Цвет команды не выбран', true);
             }
         } else {
-            alert('Христос Воскресе! Запомните задание вашей команды (второй код). Найдите остальные QR-коды и выполните всё вместе.');
+            showToast('Христос Воскресе! Запомните задание и найдите остальные QR-коды');
         }
     }
     
@@ -720,7 +731,7 @@
         
         if (teamColor && currentPage === 2 && selectedColorInfo) {
             selectedColorInfo.style.display = 'block';
-            selectedColorInfo.innerHTML = `✓ Цвет команды: <strong>${teamColor}</strong> (можно изменить)`;
+            selectedColorInfo.innerHTML = `✓ Цвет команды: <strong>${teamColor.toUpperCase()}</strong>`;
         }
     }
     
