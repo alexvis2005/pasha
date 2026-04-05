@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* Анимированный фон — более быстрые частицы */
+        /* Анимированный фон — ускоренные частицы */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -82,7 +82,7 @@
             transform: translateY(-4px);
         }
 
-        /* Шапка без крестов */
+        /* Шапка */
         .easter-header {
             background: linear-gradient(135deg, #b55a1a, #7a3a0c);
             padding: 28px 20px 24px;
@@ -208,7 +208,7 @@
             font-style: italic;
         }
 
-        /* Блок выбора: первый QR или знаю цвет */
+        /* Блок выбора */
         .choice-block {
             background: #faf0e2;
             border-radius: 48px;
@@ -264,6 +264,7 @@
             box-shadow: 0 6px 14px rgba(0,0,0,0.08);
             font-family: monospace;
             letter-spacing: 2px;
+            word-break: keep-all;
         }
 
         .manual-select {
@@ -316,10 +317,12 @@
             text-align: center;
             margin-top: 16px;
             border: 1px solid #e6cfa8;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .code2-text {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: #b35f1a;
             font-family: 'Georgia', serif;
@@ -328,6 +331,17 @@
             padding: 18px;
             border-radius: 48px;
             letter-spacing: 1px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            line-height: 1.4;
+        }
+
+        .code2-text span {
+            display: inline-block;
+            font-size: 1.7rem;
+            margin-top: 8px;
+            word-break: break-word;
         }
 
         .site-badge {
@@ -354,7 +368,8 @@
         @media (max-width: 550px) {
             .page { padding: 22px 18px; }
             .easter-header h1 { font-size: 1.5rem; }
-            .code2-text { font-size: 1.2rem; }
+            .code2-text { font-size: 1.1rem; }
+            .code2-text span { font-size: 1.3rem; }
             button { padding: 8px 18px; }
             .choice-btn { min-width: 180px; padding: 10px 16px; }
         }
@@ -362,7 +377,7 @@
 </head>
 <body>
 
-<!-- Анимированный фон (ускоренные анимации) -->
+<!-- Анимированный фон -->
 <div class="animated-bg">
     <div class="bg-glow"></div>
     <div class="floating-particle" style="width: 180px; height: 180px; top: 10%; left: -5%; animation-duration: 7s;"></div>
@@ -380,11 +395,11 @@
 
     <!-- СТРАНИЦА 1: приветствие -->
     <div id="page1" class="page">
-        <h2>дорогой друг!</h2>
+        <h2>Дорогой друг!</h2>
         <p style="font-size:1.2rem; margin: 12px 0 20px 0; color:#9b5a28;">Воистину воскресе!</p>
         <p>Мы предлагаем тебе поучаствовать в пасхальном конкурсе</p>
         <ul class="task-list">
-            <li>найди команду своего цвета</li>
+            <li>найди комнату своего цвета</li>
             <li>собери все QR коды, их 5, это важно</li>
             <li>выполните задание именно ВАШЕЙ команды</li>
             <li>постарайтесь пребывать в состоянии пасхальной радости сегодня и всю жизнь</li>
@@ -407,14 +422,14 @@
             </div>
         </div>
 
-        <!-- Блок рандомайзера (показывается при выборе "первый QR код") -->
+        <!-- Блок рандомайзера -->
         <div id="randomizerBlock" class="randomizer-box" style="display: none;">
             <p style="font-size:1.1rem;">🎲 Случайный выбор цвета</p>
             <button id="rollColorBtn" class="primary" style="background:#c2691e;">Получить цвет</button>
             <div id="colorResult" style="margin-top: 20px;"></div>
         </div>
 
-        <!-- Блок ручного выбора (показывается при выборе "знаю цвет") -->
+        <!-- Блок ручного выбора -->
         <div id="manualBlock" style="display: none;">
             <div class="team-color-highlight" id="infoNoColorYet">
                 Выберите цвет вашей команды из списка:
@@ -430,11 +445,11 @@
         </div>
         
         <div id="selectedColorInfo" class="team-color-highlight" style="margin-top: 16px; display: none;">
-            <!-- здесь будет отображаться выбранный цвет -->
+            <!-- выбранный цвет -->
         </div>
     </div>
 
-    <!-- СТРАНИЦА 3: задание ТОЛЬКО по 2 КОДУ -->
+    <!-- СТРАНИЦА 3: задание по 2 КОДУ (с кем выполнять) -->
     <div id="page3" class="page hidden">
         <div class="site-badge">◈ ВТОРОЙ QR-КОД — ЗАДАНИЕ ◈</div>
         <h3>задание вашей команды</h3>
@@ -444,17 +459,17 @@
         
         <div class="task-block">
             <p style="font-size:1.1rem; margin-bottom: 12px;"><strong>Вам нужно выполнить задание, выполнив ряд условий.</strong></p>
-            <p>Условие вашей команды: <strong>сказать хором фразу вместе с:</strong></p>
+            <p><strong>сказать хором (кодовую) фразу вместе с:</strong></p>
             <div class="code2-task-card">
                 <div id="code2TaskDisplay" class="code2-text">
                     • выберите цвет команды •
                 </div>
             </div>
-            <p style="margin-top: 20px; font-size:0.9rem; color:#7a561f; text-align:center;">Задание <strong>со второго QR-кода.</strong> Запомните и выполните вместе с командой.</p>
+            <p style="margin-top: 20px; font-size:0.9rem; color:#7a561f; text-align:center;">Задание со второго QR-кода. Запомните и выполните вместе с командой.</p>
         </div>
 
         <div class="qr-sticker">
-            ☦ Напоминание: всего пять QR-кодов. Каждый открывает новое условие. Данный сайт показывает задание из второго кода: с кем нужно произнести фразу.
+            Напоминание: всего пять QR-кодов. Каждый открывает новое условие. Данный сайт показывает задание из второго кода: с кем нужно произнести фразу.
         </div>
     </div>
 
@@ -470,10 +485,10 @@
 
 <script>
     // --------------------------------------------------------------
-    // САЙТ №2: показывает ТОЛЬКО задание 2-го кода (с кем выполнять)
-    // Цвета: 1-красный, 2-синий, 3-зеленый, 4-желтый, 5-фиолетовый, 6-розовый
-    // Задания без буквы "с" в начале:
-    // 1 ВМЕСТЕ С РОДИТЕЛЯМИ
+    // САЙТ №2: задание 2-го кода (с кем выполнять)
+    // Цвета: красный, синий, зеленый, желтый, фиолетовый, розовый
+    // Задания (без "ВМЕСТЕ С" - только РОДИТЕЛЯМИ и т.д.):
+    // 1 РОДИТЕЛЯМИ
     // 2 КЛАССНЫМИ РУКОВОДИТЕЛЯМИ
     // 3 ДУХОВЕНСТВОМ
     // 4 РАБОТНИКАМИ ТЕАТРА
@@ -483,8 +498,9 @@
     
     const colorList = ['красный', 'синий', 'зеленый', 'желтый', 'фиолетовый', 'розовый'];
     
+    // Обновлённые формулировки: без "ВМЕСТЕ С", просто существительные в творительном падеже
     const code2TaskMap = {
-        'красный': 'ВМЕСТЕ С РОДИТЕЛЯМИ',
+        'красный': 'РОДИТЕЛЯМИ',
         'синий': 'КЛАССНЫМИ РУКОВОДИТЕЛЯМИ',
         'зеленый': 'ДУХОВЕНСТВОМ',
         'желтый': 'РАБОТНИКАМИ ТЕАТРА',
@@ -495,7 +511,7 @@
     let currentPage = 1;
     const totalPages = 3;
     let teamColor = null;
-    let selectionMode = null; // 'random' или 'manual'
+    let selectionMode = null;
     
     // DOM элементы
     const page1 = document.getElementById('page1');
@@ -545,15 +561,14 @@
             if (currentTeamColorSpan) currentTeamColorSpan.innerText = 'не выбран';
             if (code2TaskDisplay) {
                 code2TaskDisplay.innerHTML = '• выберите цвет команды на второй странице •';
-                code2TaskDisplay.style.fontSize = '1.2rem';
             }
             return;
         }
         currentTeamColorSpan.innerText = teamColor.toUpperCase();
         const task = code2TaskMap[teamColor];
         if (code2TaskDisplay) {
-            code2TaskDisplay.innerHTML = `сказать хором фразу вместе с:<br><span style="display:inline-block; margin-top:12px; font-size:1.8rem;">${task}</span>`;
-            code2TaskDisplay.style.fontSize = '1.2rem';
+            // Корректный перенос текста — используем span с word-break
+            code2TaskDisplay.innerHTML = `<span style="display:inline-block; font-size:1.7rem; line-height:1.3; word-break:break-word;">${task}</span>`;
         }
     }
     
@@ -561,7 +576,6 @@
         teamColor = color;
         saveColor();
         
-        // Обновляем отображение на странице 2
         if (currentPage === 2) {
             if (selectionMode === 'random' && colorResultDiv) {
                 colorResultDiv.innerHTML = `
@@ -606,7 +620,6 @@
         if (col && colorList.includes(col)) setTeamColor(col);
     }
     
-    // Выбор режима: первый QR код или знаю цвет
     function setSelectionMode(mode) {
         selectionMode = mode;
         if (mode === 'random') {
@@ -614,31 +627,26 @@
             manualBlock.style.display = 'none';
             firstQrBtn.classList.add('active');
             knowColorBtn.classList.remove('active');
-            // сбрасываем предыдущий выбор цвета при смене режима
-            if (teamColor && selectedColorInfo) {
-                // не сбрасываем цвет, но показываем инфо
-                if (teamColor && colorResultDiv) {
-                    colorResultDiv.innerHTML = `
-                        <div class="color-badge" style="background:${getColorBg(teamColor)}; color:${getColorText(teamColor)}">
-                            ${teamColor.toUpperCase()}
-                        </div>
-                        <p style="margin-top:12px;">Цвет команды: <strong>${teamColor}</strong></p>
-                    `;
-                }
-                if (selectedColorInfo) {
-                    selectedColorInfo.style.display = 'block';
-                    selectedColorInfo.innerHTML = `✓ Цвет команды: <strong>${teamColor}</strong>`;
-                }
+            if (teamColor && colorResultDiv) {
+                colorResultDiv.innerHTML = `
+                    <div class="color-badge" style="background:${getColorBg(teamColor)}; color:${getColorText(teamColor)}">
+                        ${teamColor.toUpperCase()}
+                    </div>
+                    <p style="margin-top:12px;">Цвет команды: <strong>${teamColor}</strong></p>
+                `;
             } else {
                 if (colorResultDiv) colorResultDiv.innerHTML = `<span style="opacity:0.7;">⚡ Нажмите «Получить цвет»</span>`;
-                if (selectedColorInfo) selectedColorInfo.style.display = 'none';
+            }
+            if (selectedColorInfo) selectedColorInfo.style.display = teamColor ? 'block' : 'none';
+            if (teamColor && selectedColorInfo) {
+                selectedColorInfo.innerHTML = `✓ Цвет команды: <strong>${teamColor}</strong>`;
             }
         } else if (mode === 'manual') {
             randomizerBlock.style.display = 'none';
             manualBlock.style.display = 'block';
             knowColorBtn.classList.add('active');
             firstQrBtn.classList.remove('active');
-            if (selectedColorInfo) selectedColorInfo.style.display = 'none';
+            if (selectedColorInfo) selectedColorInfo.style.display = teamColor ? 'block' : 'none';
             if (colorResultDiv) colorResultDiv.innerHTML = '';
         }
     }
@@ -655,33 +663,20 @@
         nextBtn.textContent = (currentPage === totalPages) ? 'Завершить' : 'Вперёд →';
         
         if (currentPage === 2) {
-            // Восстанавливаем активный режим, если был
             if (selectionMode === 'random') {
                 setSelectionMode('random');
             } else if (selectionMode === 'manual') {
                 setSelectionMode('manual');
             } else {
-                // по умолчанию ничего не выбрано, показываем оба варианта
                 randomizerBlock.style.display = 'none';
                 manualBlock.style.display = 'none';
                 firstQrBtn.classList.remove('active');
                 knowColorBtn.classList.remove('active');
                 if (selectedColorInfo) selectedColorInfo.style.display = 'none';
             }
-            // если цвет уже выбран, показываем информацию
-            if (teamColor && selectionMode) {
-                if (selectionMode === 'random' && colorResultDiv) {
-                    colorResultDiv.innerHTML = `
-                        <div class="color-badge" style="background:${getColorBg(teamColor)}; color:${getColorText(teamColor)}">
-                            ${teamColor.toUpperCase()}
-                        </div>
-                        <p style="margin-top:12px;">Цвет команды: <strong>${teamColor}</strong></p>
-                    `;
-                }
-                if (selectedColorInfo && selectionMode) {
-                    selectedColorInfo.style.display = 'block';
-                    selectedColorInfo.innerHTML = `✓ Выбран цвет команды: <strong>${teamColor}</strong>`;
-                }
+            if (teamColor && selectionMode && selectedColorInfo) {
+                selectedColorInfo.style.display = 'block';
+                selectedColorInfo.innerHTML = `✓ Выбран цвет команды: <strong>${teamColor}</strong>`;
             }
         }
         if (currentPage === 3) updateTaskDisplay();
@@ -689,7 +684,6 @@
     
     function nextPage() {
         if (currentPage < totalPages) {
-            // Проверка: на странице 2 должен быть выбран цвет
             if (currentPage === 2 && !teamColor) {
                 alert('Пожалуйста, выберите цвет команды (через рандомайзер или вручную)');
                 return;
@@ -697,7 +691,6 @@
             currentPage++;
             updatePages();
             if (currentPage === 3 && !teamColor) {
-                // дополнительная защита
                 currentPage--;
                 updatePages();
                 alert('Цвет команды не выбран. Вернитесь и выберите цвет.');
@@ -725,12 +718,9 @@
         if (prevBtn) prevBtn.addEventListener('click', prevPage);
         setupManualButtons();
         
-        // если цвет уже был сохранён и режим не выбран, но цвет есть - показываем на 2 странице инфо
-        if (teamColor && currentPage === 2) {
-            if (selectedColorInfo) {
-                selectedColorInfo.style.display = 'block';
-                selectedColorInfo.innerHTML = `✓ Цвет команды: <strong>${teamColor}</strong> (можно изменить)`;
-            }
+        if (teamColor && currentPage === 2 && selectedColorInfo) {
+            selectedColorInfo.style.display = 'block';
+            selectedColorInfo.innerHTML = `✓ Цвет команды: <strong>${teamColor}</strong> (можно изменить)`;
         }
     }
     
