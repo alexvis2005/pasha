@@ -3,123 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Пасхальный квест | Найди свой цвет</title>
+    <title>Пасхальный квест | Сайт №2 | Задание: с кем выполнять</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none; /* легкий эффект игровой атмосферы, текст копировать можно */
         }
 
         body {
-            background: linear-gradient(145deg, #fdf8e7 0%, #fef3d6 100%);
-            font-family: 'Segoe UI', 'Comic Neue', 'Comic Sans MS', 'Chalkboard SE', 'Poppins', system-ui, -apple-system, sans-serif;
-            padding: 20px;
+            font-family: 'Segoe UI', 'Georgia', 'Times New Roman', 'Palatino', serif;
             min-height: 100vh;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
+            background: #1a0e05;
+            overflow-x: hidden;
         }
 
-        /* пасхальные яйца фон */
-        body::before {
-            content: "🐣🐰🥚🌸";
-            font-size: 120px;
+        /* Анимированный фон с пасхальным сиянием и парящими частицами */
+        .animated-bg {
             position: fixed;
-            bottom: 0;
-            right: 0;
-            opacity: 0.08;
-            pointer-events: none;
-            white-space: pre;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
+            overflow: hidden;
         }
 
-        body::after {
-            content: "🌿🌼🌷";
-            font-size: 90px;
-            position: fixed;
-            top: 20px;
-            left: 10px;
-            opacity: 0.08;
-            pointer-events: none;
-            z-index: 0;
+        .bg-glow {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 200, 100, 0.12), rgba(180, 100, 30, 0.05), transparent 70%);
+            animation: slowRotate 40s linear infinite;
         }
 
-        /* главный контейнер карточки */
-        .site-container {
-            max-width: 650px;
+        @keyframes slowRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .floating-particle {
+            position: absolute;
+            background: rgba(255, 215, 150, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(3px);
+            animation: floatParticle 12s infinite ease-in-out;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.2; }
+            50% { transform: translateY(-40px) translateX(20px) scale(1.2); opacity: 0.5; }
+        }
+
+        /* Пасхальные кресты на фоне (декоративные линии) */
+        .cross-decoration {
+            position: absolute;
+            font-size: 70px;
+            opacity: 0.03;
+            pointer-events: none;
+            font-family: serif;
+            user-select: none;
+        }
+
+        /* Основная карточка */
+        .site-card {
+            max-width: 720px;
             width: 100%;
             margin: 20px auto;
-            background: #fffef7;
-            border-radius: 68px 68px 80px 80px;
-            box-shadow: 0 25px 45px rgba(245, 165, 80, 0.25), 0 8px 18px rgba(0,0,0,0.1);
+            background: rgba(255, 252, 245, 0.97);
+            backdrop-filter: blur(2px);
+            border-radius: 56px;
+            box-shadow: 0 40px 70px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 215, 150, 0.3), 0 0 0 4px rgba(200, 130, 50, 0.2);
             overflow: hidden;
             position: relative;
             z-index: 2;
-            transition: all 0.2s;
-            border: 2px solid #ffdfaa;
+            transition: transform 0.3s ease;
         }
 
-        /* шапка с пасхальной ленточкой */
+        .site-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Шапка с орнаментом */
         .easter-header {
-            background: #ffb347;
-            background: linear-gradient(135deg, #FFB347, #FF8C42);
-            padding: 20px 20px 18px;
+            background: linear-gradient(135deg, #b55a1a, #7a3a0c);
+            padding: 28px 20px 24px;
             text-align: center;
-            color: white;
-            text-shadow: 2px 2px 0 #b95f00;
-            border-bottom: 5px dotted #ffe0a3;
+            color: #ffefcf;
+            border-bottom: 3px solid #e6b87e;
+            position: relative;
+        }
+
+        .easter-header::before {
+            content: "✝";
+            font-size: 50px;
+            position: absolute;
+            left: 25px;
+            top: 20px;
+            opacity: 0.2;
+            font-family: serif;
+        }
+
+        .easter-header::after {
+            content: "✝";
+            font-size: 50px;
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            opacity: 0.2;
+            font-family: serif;
+        }
+
+        .cross-icon {
+            font-size: 2rem;
+            letter-spacing: 6px;
+            font-weight: normal;
         }
 
         .easter-header h1 {
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            word-break: keep-all;
-        }
-
-        .easter-header p {
-            font-size: 1.4rem;
-            font-style: italic;
-        }
-
-        .cross-light {
             font-size: 2rem;
-            line-height: 1;
+            letter-spacing: 4px;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: normal;
+            text-shadow: 2px 2px 0 #4a2800;
+            margin: 8px 0;
         }
 
-        /* контентные страницы */
+        .greeting {
+            font-size: 1.2rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        /* Страницы */
         .page {
-            padding: 32px 28px;
+            padding: 32px 30px;
             transition: opacity 0.25s ease;
-            background: #fffdf5;
+            background: #fffcf5;
         }
 
-        /* навигация по страницам (кнопки перелистывания) */
+        .hidden {
+            display: none;
+        }
+
+        /* Навигация */
         .nav-buttons {
             display: flex;
             justify-content: space-between;
-            padding: 12px 28px 28px;
-            background: #fffdf5;
-            gap: 16px;
+            padding: 12px 30px 30px;
+            background: #fffcf5;
+            gap: 20px;
         }
 
         button {
-            background: #ffd89a;
+            background: #e7cba5;
             border: none;
-            padding: 12px 20px;
-            border-radius: 60px;
+            padding: 12px 28px;
+            border-radius: 48px;
             font-weight: bold;
             font-size: 1rem;
-            font-family: inherit;
-            color: #5e2e00;
+            font-family: 'Segoe UI', 'Georgia', serif;
+            color: #3e2a1a;
             cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
             display: inline-flex;
             align-items: center;
             gap: 8px;
+        }
+
+        button:hover {
+            background: #dcb477;
+            transform: scale(1.02);
+            color: #2a1a0a;
         }
 
         button:active {
@@ -127,498 +191,457 @@
         }
 
         button.primary {
-            background: #ff9f3d;
-            color: white;
-            box-shadow: 0 4px 0 #b45f1b;
+            background: #c2691e;
+            color: #fff2e0;
+            box-shadow: 0 4px 0 #733f0e;
         }
 
-        .randomizer-box {
-            background: #fce5c1;
-            border-radius: 48px;
-            padding: 20px;
-            text-align: center;
-            margin: 20px 0;
-            border: 2px dashed #ffae5a;
+        button.primary:hover {
+            background: #d47a2c;
         }
 
-        .color-badge {
-            display: inline-block;
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.8rem;
-            margin-top: 12px;
-            background: white;
-            box-shadow: 0 5px 0 rgba(0,0,0,0.05);
+        /* Стили для контента */
+        h2, h3 {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #9b4a1a;
+            letter-spacing: 1px;
+            border-left: 5px solid #d69648;
+            padding-left: 18px;
+            margin-bottom: 18px;
         }
 
         .task-list {
-            background: #fef2e0;
-            border-radius: 48px;
-            padding: 18px 24px;
+            list-style: none;
             margin: 20px 0;
         }
 
         .task-list li {
-            list-style-type: "🐣 ";
-            margin: 12px 0;
+            margin: 16px 0;
             font-size: 1.05rem;
-            line-height: 1.4;
-            padding-left: 8px;
+            line-height: 1.45;
+            padding-left: 28px;
+            position: relative;
+            color: #2c241a;
+        }
+
+        .task-list li::before {
+            content: "✞";
+            color: #c27e3a;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
         }
 
         .qr-sticker {
-            background: #f3e5c9;
+            background: #efe2cf;
             border-radius: 32px;
-            padding: 12px;
+            padding: 16px 20px;
             text-align: center;
-            font-size: 0.9rem;
-            margin-top: 20px;
+            font-size: 0.95rem;
+            margin-top: 24px;
+            border: 1px solid #e2cbaa;
+            color: #5f3e1c;
+            font-style: italic;
         }
 
-        .success-message {
-            background: #cbe6b0;
-            border-radius: 40px;
-            padding: 16px;
+        .randomizer-box {
+            background: #faf0e2;
+            border-radius: 48px;
+            padding: 26px 20px;
             text-align: center;
-            color: #2a5c1e;
+            margin: 20px 0;
+            border: 1px solid #e7cfaa;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.02), 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .color-badge {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 60px;
             font-weight: bold;
+            font-size: 1.8rem;
+            margin-top: 16px;
+            background: white;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+            font-family: monospace;
+            letter-spacing: 2px;
         }
 
-        .hidden {
-            display: none;
+        .team-color-highlight {
+            background: #f7ecdd;
+            border-left: 8px solid #d49146;
+            padding: 16px 20px;
+            border-radius: 28px;
+            margin: 24px 0;
+            color: #4d2f12;
+        }
+
+        .task-block {
+            background: #fef4e8;
+            border-radius: 44px;
+            padding: 26px 26px;
+            margin: 24px 0;
+            border: 1px solid #f0dcbf;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.04);
+        }
+
+        .code2-task-card {
+            background: #fff7ed;
+            padding: 24px;
+            border-radius: 40px;
+            text-align: center;
+            margin-top: 16px;
+            border: 1px solid #e6cfa8;
+        }
+
+        .code2-text {
+            font-size: 1.7rem;
+            font-weight: bold;
+            color: #b35f1a;
+            font-family: 'Georgia', serif;
+            margin-top: 12px;
+            background: #fffaef;
+            padding: 18px;
+            border-radius: 48px;
+            letter-spacing: 1px;
+        }
+
+        .manual-select {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 18px 0 8px;
+        }
+
+        .color-option-btn {
+            background: #f5e5d0;
+            border: 1px solid #ddb982;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.15s;
+            font-family: inherit;
+            color: #4f3118;
+        }
+
+        .color-option-btn:hover {
+            background: #e9cfaa;
+            transform: translateY(-2px);
         }
 
         .footer-small {
             text-align: center;
             font-size: 0.7rem;
-            padding: 16px;
+            padding: 18px;
             background: #f9efdf;
-            color: #af7f41;
-            border-top: 1px solid #ffe1b3;
+            color: #9b6a3a;
+            border-top: 1px solid #f0e0c8;
+            letter-spacing: 1px;
         }
 
-        .qr-collect {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            margin: 15px 0;
-        }
-
-        .qr-chip {
-            background: #fbe5bf;
-            border-radius: 60px;
-            padding: 8px 14px;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
-        }
-
-        .team-color-highlight {
-            background: #fff0d0;
-            border-left: 12px solid gold;
-            padding: 12px 18px;
-            border-radius: 28px;
-            margin: 20px 0;
-        }
-
-        @media (max-width: 500px) {
-            .page { padding: 20px 18px; }
-            .easter-header h1 { font-size: 1.8rem; }
+        @media (max-width: 550px) {
+            .page { padding: 22px 18px; }
+            .easter-header h1 { font-size: 1.5rem; }
+            .code2-text { font-size: 1.2rem; }
+            button { padding: 8px 18px; }
         }
     </style>
 </head>
 <body>
 
-<div class="site-container" id="app">
+<!-- Анимированный фон -->
+<div class="animated-bg">
+    <div class="bg-glow"></div>
+    <!-- Парящие частицы (световые блики) -->
+    <div class="floating-particle" style="width: 180px; height: 180px; top: 10%; left: -5%; animation-duration: 18s;"></div>
+    <div class="floating-particle" style="width: 250px; height: 250px; bottom: 5%; right: -10%; animation-duration: 22s; opacity: 0.15;"></div>
+    <div class="floating-particle" style="width: 120px; height: 120px; top: 60%; left: 80%; animation-duration: 14s;"></div>
+    <div class="floating-particle" style="width: 90px; height: 90px; top: 20%; left: 70%; animation-duration: 16s;"></div>
+    <div class="floating-particle" style="width: 200px; height: 200px; bottom: 30%; left: -8%; animation-duration: 25s; opacity: 0.1;"></div>
+    
+    <!-- Декоративные кресты на фоне -->
+    <div class="cross-decoration" style="top: 15%; left: 5%;">✞</div>
+    <div class="cross-decoration" style="bottom: 20%; right: 3%; font-size: 90px;">✝</div>
+    <div class="cross-decoration" style="top: 45%; left: 88%;">†</div>
+    <div class="cross-decoration" style="bottom: 65%; left: 2%; font-size: 55px;">☦</div>
+</div>
+
+<div class="site-card" id="app">
     <div class="easter-header">
-        <div class="cross-light">✞ ХРИСТОС ВОСКРЕСЕ! ✞</div>
-        <p>🌷 пасхальный конкурс 🌸</p>
+        <div class="cross-icon">✝ ✞ ✝</div>
+        <h1>ХРИСТОС ВОСКРЕСЕ</h1>
+        <div class="greeting">Пасхальный конкурс</div>
     </div>
 
-    <!-- страница 1 (основное приветствие) -->
+    <!-- СТРАНИЦА 1: приветствие -->
     <div id="page1" class="page">
-        <h2 style="color:#bc6f25;">🌼 дорогой друг!</h2>
-        <p style="font-size:1.2rem; margin: 15px 0;">Христос воскресе! 🥚✨</p>
-        <p>мы предлагаем тебе поучаствовать в пасхальном конкурсе</p>
+        <h2>дорогой друг!</h2>
+        <p style="font-size:1.2rem; margin: 12px 0 20px 0; color:#9b5a28;">Воистину воскресе!</p>
+        <p>Мы предлагаем тебе поучаствовать в пасхальном конкурсе</p>
         <ul class="task-list">
-            <li>🔍 ищи комнату своего цвета</li>
-            <li>📲 собери все QR коды, их 5, это важно</li>
-            <li>🎭 выполните задание именно ВАШЕЙ команды</li>
-            <li>😌 постарайтесь пребывать в состоянии пасхальной радости сегодня и всю жизнь</li>
+            <li>найди комнату своего цвета</li>
+            <li>собери все QR коды, их 5, это важно</li>
+            <li>выполните задание именно ВАШЕЙ команды</li>
+            <li>постарайтесь пребывать в состоянии пасхальной радости сегодня и всю жизнь</li>
         </ul>
         <div class="qr-sticker">
-            🌟 *первый шаг — узнать цвет команды* 🌟
+            ★ первый шаг — определить цвет команды ★
         </div>
     </div>
 
-    <!-- страница 2 (выбор цвета / рандомайзер) -->
+    <!-- СТРАНИЦА 2: выбор цвета + рандомайзер + ручной выбор -->
     <div id="page2" class="page hidden">
-        <h3>🥚 давайте определимся с цветом вашей команды</h3>
-        <p style="margin: 10px 0 0 0;">Если вы знаете свой цвет — листайте дальше. <br> 
-        Если это ваш первый QR код — нажмите кнопку ниже 🎲</p>
+        <h3>определение цвета команды</h3>
+        <p style="margin-bottom: 12px;">Если вы знаете свой цвет — выберите его вручную или используйте жребий.</p>
+        
         <div class="randomizer-box">
-            <p>🎲 <strong>Рандомайзер с 6 цветами</strong> 🎨</p>
-            <button id="rollColorBtn" class="primary" style="background:#e68a2e;">✨ Получить цвет команды ✨</button>
-            <div id="colorResult" style="margin-top: 20px;">
-                <!-- выпавший цвет -->
-            </div>
+            <p style="font-size:1.1rem;">🎲 Случайный выбор цвета</p>
+            <button id="rollColorBtn" class="primary" style="background:#c2691e;">Получить цвет</button>
+            <div id="colorResult" style="margin-top: 20px;"></div>
         </div>
-        <div class="team-color-highlight" id="infoNoColorYet" style="background:#f7e5ce;">
-            ⚡ Пока цвет не выбран. Нажмите на рандомайзер или если у вас уже есть цвет — просто перейдите на третью страницу.
+
+        <div class="team-color-highlight" id="infoNoColorYet">
+            Цвет не выбран. Выберите из списка ниже или нажмите «Получить цвет».
+        </div>
+
+        <div style="margin-top: 20px;">
+            <p><strong>Выбрать цвет вручную:</strong></p>
+            <div class="manual-select" id="manualColorButtons">
+                <button data-color="красный" class="color-option-btn" style="background:#f0cfcf;">красный</button>
+                <button data-color="синий" class="color-option-btn" style="background:#d1e2f5;">синий</button>
+                <button data-color="зеленый" class="color-option-btn" style="background:#d3ecd0;">зеленый</button>
+                <button data-color="желтый" class="color-option-btn" style="background:#f9efcf;">желтый</button>
+                <button data-color="фиолетовый" class="color-option-btn" style="background:#e3d5f0;">фиолетовый</button>
+                <button data-color="розовый" class="color-option-btn" style="background:#f8dfea;">розовый</button>
+            </div>
         </div>
     </div>
 
-    <!-- страница 3 (основные задания в зависимости от цвета) -->
+    <!-- СТРАНИЦА 3: задание ТОЛЬКО по 2 КОДУ -->
     <div id="page3" class="page hidden">
-        <h3>📜 основные задания (пасхальный квест)</h3>
-        <div id="teamDisplayBlock" class="team-color-highlight" style="background:#ffe1b9;">
-            🎨 <strong>Цвет вашей команды:</strong> <span id="currentTeamColorSpan">—</span>
+        <h3>задание вашей команды (второй QR-код)</h3>
+        <div id="teamDisplayBlock" class="team-color-highlight">
+            Цвет команды: <strong><span id="currentTeamColorSpan" style="font-size:1.2rem;">—</span></strong>
         </div>
-        <div id="taskForColor" class="task-list" style="background:#fff2e0;">
-            <strong>✨ Ваше специальное задание:</strong>
-            <div id="colorSpecificTask" style="margin-top: 12px; font-size:1.1rem;">🔮 выберите цвет команды на 2 странице</div>
-        </div>
-        <div class="qr-sticker">
-            📌 <strong>Правила:</strong><br>
-            • собери 5 QR-кодов (каждый найденный код — новая подсказка)<br>
-            • выполните задание именно с теми, кто указан в цвете команды<br>
-            • пусть пасхальная радость живёт в сердце!
-        </div>
-        <!-- симуляция сбора QR кодов (интерактив) -->
-        <div style="margin-top: 24px;">
-            <p>📱 <strong>Твои найденные QR-коды (симулятор):</strong> <br> <span style="font-size:0.85rem;">отмечай QR по мере нахождения в комнатах</span></p>
-            <div id="qrList" class="qr-collect">
-                <!-- динамические qr чипы -->
+        
+        <div class="task-block">
+            <p style="font-size:1.1rem; margin-bottom: 12px;"><strong>Вам нужно выполнить задание, выполнив ряд условий.</strong></p>
+            <p>Условие вашей команды: <strong>сказать хором кодовую фразу</strong></p>
+            <div class="code2-task-card">
+                <div id="code2TaskDisplay" class="code2-text">
+                    ✝ выберите цвет команды ✝
+                </div>
             </div>
-            <button id="addQrBtn" style="background:#b3d9a0; font-size:0.8rem;">➕ Найти QR-код (имитация)</button>
-            <div id="qrCompleteMsg" class="success-message hidden">🎉 Поздравляем! Все 5 QR-кодов собраны! Вы — настоящие пасхальные следопыты! 🎉</div>
+            <p style="margin-top: 20px; font-size:0.9rem; color:#7a561f; text-align:center;">Задание со второго QR-кода. Запомните и исполните вместе с командой.</p>
+        </div>
+
+        <div class="qr-sticker">
+            ☦ Напоминание: всего пять QR-кодов. Каждый открывает новое условие. Данный сайт показывает задание из второго кода: с кем нужно произнести фразу.
         </div>
     </div>
 
-    <!-- навигационные кнопки -->
+    <!-- навигация -->
     <div class="nav-buttons">
         <button id="prevBtn" disabled>◀ Назад</button>
-        <button id="nextBtn" class="primary">Вперед ▶</button>
+        <button id="nextBtn" class="primary">Вперёд ▶</button>
     </div>
     <div class="footer-small">
-        🌸 Христос Воскресе! Радость пасхальная с тобой 🌸
+        ✞ Христос Воскресе! Радость пасхальная да пребудет с тобой ✞
     </div>
 </div>
 
 <script>
-    // ------------------- СОСТОЯНИЕ ------------------
-    // 1 = страница приветствия, 2 = выбор цвета, 3 = задания
-    let currentPage = 1;
-    const totalPages = 3;
+    // --------------------------------------------------------------
+    // САЙТ №2: показывает ТОЛЬКО задание 2-го кода (с кем выполнять)
+    // Цвета: 1-красный, 2-синий, 3-зеленый, 4-желтый, 5-фиолетовый, 6-розовый
+    // Задания строго по условию:
+    // 1 ВМЕСТЕ С РОДИТЕЛЯМИ
+    // 2 С КЛАССНЫМИ РУКОВОДИТЕЛЯМИ
+    // 3 С ДУХОВЕНСТВОМ
+    // 4 С РАБОТНИКАМИ ТЕАТРА
+    // 5 ЛЮДЬМИ НЕ ИЗ ГИМНАЗИИ
+    // 6 ЛЮДЬМИ В КРАСНОЙ ОДЕЖДЕ
+    // --------------------------------------------------------------
     
-    // Данные команды
-    let teamColor = null;      // один из: красный, желтый, зеленый, синий, оранжевый, фиолетовый (и т.д.)
-    let collectedQRCodes = [];
-    const MAX_QR = 5;
+    const colorList = ['красный', 'синий', 'зеленый', 'желтый', 'фиолетовый', 'розовый'];
     
-    // Список возможных цветов согласно третьей странице + расширение
-    const colorList = ['красный', 'желтый', 'зеленый', 'синий', 'оранжевый', 'фиолетовый'];
-    
-    // Словарь заданий для цветов (как описано + дополним для и.т.д.)
-    const colorTasks = {
-        'красный': '🎈 выполняйте ваше задание с РОДИТЕЛЯМИ! Приготовьте вместе пасхальное угощение или спойте тропарь.',
-        'желтый': '🐥 выполняйте свои задания с КЛАССНЫМИ РУКОВОДИТЕЛЯМИ! Сделайте пасхальную открытку классу.',
-        'зеленый': '🌿 выполняйте свои задания с работниками ТЕАТРА! Разыграйте мини-сценку о Пасхе.',
-        'синий': '💙 выполняйте задания с ДРУЗЬЯМИ из вашей команды! Организуйте пасхальный хоровод.',
-        'оранжевый': '🍊 выполняйте задания с БАБУШКАМИ И ДЕДУШКАМИ! Расскажите им стих о Пасхе.',
-        'фиолетовый': '🟣 выполняйте задания с УЧИТЕЛЯМИ! Нарисуйте мелом пасхальные рисунки во дворе.'
+    const code2TaskMap = {
+        'красный': 'ВМЕСТЕ С РОДИТЕЛЯМИ',
+        'синий': 'С КЛАССНЫМИ РУКОВОДИТЕЛЯМИ',
+        'зеленый': 'С ДУХОВЕНСТВОМ',
+        'желтый': 'С РАБОТНИКАМИ ТЕАТРА',
+        'фиолетовый': 'ЛЮДЬМИ НЕ ИЗ ГИМНАЗИИ',
+        'розовый': 'ЛЮДЬМИ В КРАСНОЙ ОДЕЖДЕ'
     };
     
+    let currentPage = 1;
+    const totalPages = 3;
+    let teamColor = null;
+    
     // DOM элементы
-    const page1El = document.getElementById('page1');
-    const page2El = document.getElementById('page2');
-    const page3El = document.getElementById('page3');
+    const page1 = document.getElementById('page1');
+    const page2 = document.getElementById('page2');
+    const page3 = document.getElementById('page3');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const rollBtn = document.getElementById('rollColorBtn');
     const colorResultDiv = document.getElementById('colorResult');
-    const infoNoColorYet = document.getElementById('infoNoColorYet');
+    const infoNoColorYetDiv = document.getElementById('infoNoColorYet');
     const currentTeamColorSpan = document.getElementById('currentTeamColorSpan');
-    const colorSpecificTaskDiv = document.getElementById('colorSpecificTask');
-    const addQrBtn = document.getElementById('addQrBtn');
-    const qrListDiv = document.getElementById('qrList');
-    const qrCompleteMsg = document.getElementById('qrCompleteMsg');
-    
-    // Обновить видимость страниц
-    function updatePagesVisibility() {
-        page1El.classList.add('hidden');
-        page2El.classList.add('hidden');
-        page3El.classList.add('hidden');
-        if (currentPage === 1) page1El.classList.remove('hidden');
-        if (currentPage === 2) page2El.classList.remove('hidden');
-        if (currentPage === 3) page3El.classList.remove('hidden');
-        
-        // кнопка назад/вперед
-        prevBtn.disabled = (currentPage === 1);
-        if (currentPage === totalPages) {
-            nextBtn.textContent = '🏁 Финал 🏁';
-        } else {
-            nextBtn.textContent = 'Вперед ▶';
-        }
-        
-        // дополнительно при переходе на 3 страницу обновляем отображение заданий и QR
-        if (currentPage === 3) {
-            renderTeamInfo();
-            renderQRCodes();
-        }
-        if (currentPage === 2) {
-            // синхронизируем отображение, если цвет уже выбран
-            if (teamColor) {
-                colorResultDiv.innerHTML = `<div class="color-badge" style="background:${getColorBg(teamColor)}; color:${getColorText(teamColor)}">🎨 ${teamColor.toUpperCase()} 🎨</div>
-                <p style="margin-top:8px;">✓ Цвет команды: ${teamColor}. Теперь переходи на третью страницу!</p>`;
-                if (infoNoColorYet) infoNoColorYet.innerHTML = `✅ Ваш цвет: ${teamColor}. Выполняйте задания соответствующего цвета! 🥳`;
-            } else {
-                colorResultDiv.innerHTML = `<span style="opacity:0.7;">⚡ Нажмите на рандомайзер, чтобы определить цвет команды</span>`;
-                if(infoNoColorYet) infoNoColorYet.innerHTML = `⚠️ Цвет не выбран. Используйте рандомайзер или если цвет уже известен, нажмите "далее" и укажите его вручную? (добавим ручной ввод?) <br><button id="manualColorBtn" style="margin-top:8px; background:#ffcf8a;">🖌️ Выбрать цвет из списка</button>`;
-                const manualBtn = document.getElementById('manualColorBtn');
-                if(manualBtn) manualBtn.removeEventListener('click', handleManualColor);
-                const newBtn = document.getElementById('manualColorBtn');
-                if(newBtn) newBtn.addEventListener('click', handleManualColor);
-                else if(document.getElementById('manualColorBtn') === null && infoNoColorYet) {
-                    const btn = document.createElement('button');
-                    btn.id = 'manualColorBtn';
-                    btn.textContent = '🎨 Выбрать цвет вручную';
-                    btn.style.marginTop = '8px';
-                    btn.style.background = '#ffcf8a';
-                    btn.style.border = 'none';
-                    btn.style.padding = '8px 14px';
-                    btn.style.borderRadius = '30px';
-                    btn.style.fontWeight = 'bold';
-                    infoNoColorYet.appendChild(btn);
-                    btn.addEventListener('click', handleManualColor);
-                }
-            }
-        }
-    }
+    const code2TaskDisplay = document.getElementById('code2TaskDisplay');
     
     function getColorBg(colorName) {
         const map = {
-            'красный': '#ffcccc', 'желтый': '#fff0b3', 'зеленый': '#c8e6d9', 'синий': '#cce5ff', 'оранжевый': '#ffe0b5', 'фиолетовый': '#e2d0ff'
+            'красный': '#f3dede', 'синий': '#e1ecf7', 'зеленый': '#e2f0df', 
+            'желтый': '#faf0d3', 'фиолетовый': '#ede5f7', 'розовый': '#fce8ef'
         };
-        return map[colorName] || '#f0e0c0';
+        return map[colorName] || '#f8f0e4';
     }
+    
     function getColorText(colorName) {
-        const map = {'красный':'#a1220a','желтый':'#8a6e1c','зеленый':'#1d6b2e','синий':'#004080','оранжевый':'#b45f1b','фиолетовый':'#5a2d8c'};
-        return map[colorName] || '#4a2e00';
+        const map = {
+            'красный': '#a13d1a','синий':'#2b5580','зеленый':'#2d6e2e',
+            'желтый':'#8a691e','фиолетовый':'#5f3a80','розовый':'#a54364'
+        };
+        return map[colorName] || '#5a3e22';
     }
     
-    // установить цвет команды
-    function setTeamColor(color) {
-        teamColor = color;
-        localStorage.setItem('easterTeamColor', color);
-        // обновить на странице 2
-        if (currentPage === 2 && colorResultDiv) {
-            colorResultDiv.innerHTML = `<div class="color-badge" style="background:${getColorBg(color)}; color:${getColorText(color)}">🐣 ${color.toUpperCase()} 🐣</div>
-            <p>🎉 отлично! Ваш цвет — <strong>${color}</strong>. Переходите на третью страницу для заданий.</p>`;
-            if(infoNoColorYet) infoNoColorYet.innerHTML = `✅ Команда ${color.toUpperCase()}! Выполняйте задание с: ${getPartnerByColor(color)}`;
-        }
-        if (currentPage === 3) renderTeamInfo();
+    function saveColor() {
+        if (teamColor) localStorage.setItem('easterTeamColor_site2', teamColor);
+        else localStorage.removeItem('easterTeamColor_site2');
     }
     
-    function getPartnerByColor(color) {
-        if(color === 'красный') return 'РОДИТЕЛЯМИ';
-        if(color === 'желтый') return 'КЛАССНЫМИ РУКОВОДИТЕЛЯМИ';
-        if(color === 'зеленый') return 'работниками ТЕАТРА';
-        if(color === 'синий') return 'ДРУЗЬЯМИ';
-        if(color === 'оранжевый') return 'БАБУШКАМИ/ДЕДУШКАМИ';
-        if(color === 'фиолетовый') return 'УЧИТЕЛЯМИ';
-        return 'командой';
+    function loadColor() {
+        const saved = localStorage.getItem('easterTeamColor_site2');
+        if (saved && colorList.includes(saved)) teamColor = saved;
+        else teamColor = null;
     }
     
-    function renderTeamInfo() {
+    function updateTaskDisplay() {
         if (!teamColor) {
-            currentTeamColorSpan.innerText = '❓ не выбран (вернись на страницу 2)';
-            colorSpecificTaskDiv.innerHTML = '🎯 Пожалуйста, сначала выберите цвет команды на второй странице с помощью рандомайзера или ручного выбора.';
+            if (currentTeamColorSpan) currentTeamColorSpan.innerText = 'не выбран';
+            if (code2TaskDisplay) {
+                code2TaskDisplay.innerHTML = '✝ выберите цвет команды на второй странице ✝';
+                code2TaskDisplay.style.fontSize = '1.2rem';
+            }
             return;
         }
-        currentTeamColorSpan.innerText = `${teamColor.toUpperCase()}`;
-        const taskDesc = colorTasks[teamColor] || `🎁 выполняйте задание с ${getPartnerByColor(teamColor)}! Проявите пасхальную радость и креативность.`;
-        colorSpecificTaskDiv.innerHTML = `<div style="font-size:1.2rem;">${taskDesc}</div><div style="margin-top:8px;">🐏 Не забудьте собрать 5 QR-кодов!</div>`;
+        currentTeamColorSpan.innerText = teamColor.toUpperCase();
+        const task = code2TaskMap[teamColor];
+        if (code2TaskDisplay) {
+            code2TaskDisplay.innerHTML = `сказать хором кодовую фразу<br><span style="display:inline-block; margin-top:12px; font-size:1.8rem;">${task}</span>`;
+            code2TaskDisplay.style.fontSize = '1.2rem';
+        }
     }
     
-    // Рандомайзер
+    function setTeamColor(color) {
+        teamColor = color;
+        saveColor();
+        if (currentPage === 2) {
+            if (colorResultDiv) {
+                colorResultDiv.innerHTML = `
+                    <div class="color-badge" style="background:${getColorBg(color)}; color:${getColorText(color)}">
+                        ${color.toUpperCase()}
+                    </div>
+                    <p style="margin-top:12px;">Цвет команды: <strong>${color}</strong>. Переходите на третью страницу.</p>
+                `;
+            }
+            if (infoNoColorYetDiv) {
+                infoNoColorYetDiv.innerHTML = `✓ Выбран цвет: ${color}. Задание вашей команды доступно на 3 странице.`;
+            }
+        }
+        if (currentPage === 3) updateTaskDisplay();
+    }
+    
     function randomColor() {
-        const randIndex = Math.floor(Math.random() * colorList.length);
-        return colorList[randIndex];
+        return colorList[Math.floor(Math.random() * colorList.length)];
     }
     
     function handleRoll() {
         const newColor = randomColor();
         setTeamColor(newColor);
-        // дополнительный эффект
-        const btn = document.getElementById('rollColorBtn');
-        if(btn) {
-            btn.style.transform = 'scale(0.95)';
-            setTimeout(()=>{btn.style.transform='';}, 150);
-        }
-        // показать уведомление
-        if (currentPage === 2) {
-            // уже обновляется через setTeamColor вызывает отрисовку
+        if (rollBtn) {
+            rollBtn.style.transform = 'scale(0.96)';
+            setTimeout(() => { if(rollBtn) rollBtn.style.transform = ''; }, 150);
         }
     }
     
-    function handleManualColor() {
-        // создаем попап выбор
-        let options = colorList.map(c => `<button class="color-opt" data-col="${c}" style="margin:5px; background:${getColorBg(c)}; border:none; padding:8px 14px; border-radius:50px;">${c.toUpperCase()}</button>`).join('');
-        const modalDiv = document.createElement('div');
-        modalDiv.style.position = 'fixed'; modalDiv.style.top='0'; modalDiv.style.left='0'; modalDiv.style.width='100%'; modalDiv.style.height='100%';
-        modalDiv.style.background='rgba(0,0,0,0.5)'; modalDiv.style.display='flex'; modalDiv.style.alignItems='center'; modalDiv.style.justifyContent='center'; modalDiv.style.zIndex='1000';
-        const inner = document.createElement('div');
-        inner.style.background='#fff4e6'; inner.style.padding='24px'; inner.style.borderRadius='48px'; inner.style.maxWidth='300px'; inner.style.textAlign='center';
-        inner.innerHTML = `<h4>Выбери цвет команды</h4><div id="colorOptsList">${options}</div><button id="closeModalBtn" style="margin-top:16px;">Закрыть</button>`;
-        modalDiv.appendChild(inner);
-        document.body.appendChild(modalDiv);
-        const closeModal = () => modalDiv.remove();
-        document.querySelectorAll('.color-opt').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const chosen = btn.getAttribute('data-col');
-                setTeamColor(chosen);
-                closeModal();
-                if (currentPage === 2) updatePagesVisibility();
-                if(currentPage === 3) renderTeamInfo();
-            });
+    function setupManualButtons() {
+        document.querySelectorAll('.color-option-btn').forEach(btn => {
+            btn.removeEventListener('click', manualHandler);
+            btn.addEventListener('click', manualHandler);
         });
-        const closeBtn = inner.querySelector('#closeModalBtn');
-        if(closeBtn) closeBtn.addEventListener('click', closeModal);
-        modalDiv.addEventListener('click', (e) => { if(e.target === modalDiv) closeModal(); });
     }
     
-    // QR код симулятор
-    function renderQRCodes() {
-        qrListDiv.innerHTML = '';
-        for(let i=0; i<MAX_QR; i++) {
-            const isFound = collectedQRCodes.includes(i);
-            const qrSpan = document.createElement('div');
-            qrSpan.className = 'qr-chip';
-            if(isFound) {
-                qrSpan.innerHTML = `✅ QR-${i+1} найден! 🥚`;
-                qrSpan.style.background = '#c8e6b5';
-                qrSpan.style.opacity = '1';
+    function manualHandler(e) {
+        const col = e.currentTarget.getAttribute('data-color');
+        if (col && colorList.includes(col)) setTeamColor(col);
+    }
+    
+    function updatePages() {
+        page1.classList.add('hidden');
+        page2.classList.add('hidden');
+        page3.classList.add('hidden');
+        if (currentPage === 1) page1.classList.remove('hidden');
+        if (currentPage === 2) page2.classList.remove('hidden');
+        if (currentPage === 3) page3.classList.remove('hidden');
+        
+        prevBtn.disabled = (currentPage === 1);
+        nextBtn.textContent = (currentPage === totalPages) ? 'Завершить' : 'Вперёд →';
+        
+        if (currentPage === 2) {
+            if (teamColor) {
+                if (colorResultDiv) {
+                    colorResultDiv.innerHTML = `
+                        <div class="color-badge" style="background:${getColorBg(teamColor)}; color:${getColorText(teamColor)}">
+                            ${teamColor.toUpperCase()}
+                        </div>
+                        <p>Текущий цвет: <strong>${teamColor}</strong>. Вы можете сменить.</p>
+                    `;
+                }
+                if (infoNoColorYetDiv) infoNoColorYetDiv.innerHTML = `✓ Цвет команды: ${teamColor}. При необходимости измените.`;
             } else {
-                qrSpan.innerHTML = `🔲 QR-${i+1} ???`;
-                qrSpan.style.background = '#eeddbb';
-                qrSpan.style.opacity = '0.7';
-            }
-            qrListDiv.appendChild(qrSpan);
-        }
-        if(collectedQRCodes.length === MAX_QR) {
-            qrCompleteMsg.classList.remove('hidden');
-        } else {
-            qrCompleteMsg.classList.add('hidden');
-        }
-    }
-    
-    function addQRCode() {
-        if(collectedQRCodes.length >= MAX_QR) {
-            alert('🎉 Ты уже собрал все 5 QR-кодов! Молодец! Теперь иди выполнять задание команды.');
-            return;
-        }
-        let newIndex = -1;
-        for(let i=0; i<MAX_QR; i++) {
-            if(!collectedQRCodes.includes(i)) {
-                newIndex = i;
-                break;
+                if (colorResultDiv) colorResultDiv.innerHTML = `<span style="opacity:0.8;">⚡ Нажмите «Получить цвет» или выберите вручную</span>`;
+                if (infoNoColorYetDiv) infoNoColorYetDiv.innerHTML = `Цвет не выбран. Выберите из списка или используйте жребий.`;
             }
         }
-        if(newIndex !== -1) {
-            collectedQRCodes.push(newIndex);
-            renderQRCodes();
-            // приятное сообщение
-            const msgDiv = document.createElement('div');
-            msgDiv.innerText = `📸 QR-код #${newIndex+1} найден! Осталось ${MAX_QR - collectedQRCodes.length} кодов.`;
-            msgDiv.style.position='fixed'; msgDiv.style.bottom='20px'; msgDiv.style.left='20px'; msgDiv.style.background='#ffdd99'; msgDiv.style.padding='8px 16px'; msgDiv.style.borderRadius='40px'; msgDiv.style.fontWeight='bold'; msgDiv.style.zIndex='999';
-            document.body.appendChild(msgDiv);
-            setTimeout(()=>msgDiv.remove(), 2000);
-        }
-        if(collectedQRCodes.length === MAX_QR) {
-            setTimeout(()=>{
-                if(confirm('🥳 Ты собрал все QR-коды! Пасхальная радость наполняет сердце. Желаем удачи в выполнении задания команды!')){}
-            },100);
-        }
+        if (currentPage === 3) updateTaskDisplay();
     }
     
-    // Загрузка сохранённого цвета из localStorage
-    function loadSavedData() {
-        const savedColor = localStorage.getItem('easterTeamColor');
-        if(savedColor && colorList.includes(savedColor)) {
-            teamColor = savedColor;
-        } else {
-            teamColor = null;
-        }
-        const savedQR = localStorage.getItem('easterQRCodes');
-        if(savedQR) {
-            try {
-                let arr = JSON.parse(savedQR);
-                if(Array.isArray(arr)) collectedQRCodes = arr.filter(i=> i>=0 && i<MAX_QR);
-            } catch(e) {}
-        }
-        // обновить при каждой загрузке
-        renderQRCodes();
-        if(teamColor && currentPage===3) renderTeamInfo();
-        if(currentPage===2 && teamColor) updatePagesVisibility();
-    }
-    
-    function saveToLocal() {
-        if(teamColor) localStorage.setItem('easterTeamColor', teamColor);
-        localStorage.setItem('easterQRCodes', JSON.stringify(collectedQRCodes));
-    }
-    
-    // следим за изменениями
-    function autoSave() {
-        saveToLocal();
-    }
-    
-    // навигация
     function nextPage() {
-        if(currentPage < totalPages) {
+        if (currentPage < totalPages) {
             currentPage++;
-            updatePagesVisibility();
-            if(currentPage === 3 && !teamColor) {
-                // предупреждение, но не блокируем, можно вернуться
-                const warn = confirm('У вас ещё не выбран цвет команды. На странице 2 используйте рандомайзер или ручной выбор. Перейти всё равно?');
-                if(!warn) { currentPage--; updatePagesVisibility(); return; }
+            updatePages();
+            if (currentPage === 3 && !teamColor) {
+                const stay = confirm('Цвет команды не выбран. Задание не отобразится. Вернуться к выбору цвета?');
+                if (stay) {
+                    currentPage--;
+                    updatePages();
+                }
             }
-            if(currentPage === 2 && !teamColor) {
-                // просто показываем интерфейс
-            }
-            if(currentPage === 3 && teamColor) renderTeamInfo();
-            autoSave();
         } else {
-            alert('🌸 Христос Воскресе! Ты прошёл все страницы. Не забывай хранить пасхальную радость в сердце и собери 5 QR-кодов! 🐣');
+            alert('Христос Воскресе! Запомните задание вашей команды (2 код). Найдите остальные QR-коды и исполните всё вместе.');
         }
     }
     
     function prevPage() {
-        if(currentPage > 1) {
+        if (currentPage > 1) {
             currentPage--;
-            updatePagesVisibility();
-            if(currentPage === 3 && teamColor) renderTeamInfo();
-            autoSave();
+            updatePages();
         }
     }
     
-    // инициализация и обработчики
     function init() {
-        updatePagesVisibility();
-        loadSavedData();
-        if(rollBtn) rollBtn.addEventListener('click', handleRoll);
-        if(nextBtn) nextBtn.addEventListener('click', nextPage);
-        if(prevBtn) prevBtn.addEventListener('click', prevPage);
-        if(addQrBtn) addQrBtn.addEventListener('click', () => { addQRCode(); autoSave(); });
-        // при изменениях вручную автосохранение
-        window.addEventListener('beforeunload', () => autoSave());
-        // если на странице 3 перерендер при обновлении цвета
-        renderQRCodes();
-        if(teamColor && currentPage ===3) renderTeamInfo();
+        loadColor();
+        updatePages();
+        if (rollBtn) rollBtn.addEventListener('click', handleRoll);
+        if (nextBtn) nextBtn.addEventListener('click', nextPage);
+        if (prevBtn) prevBtn.addEventListener('click', prevPage);
+        setupManualButtons();
+        if (teamColor && currentPage === 3) updateTaskDisplay();
     }
     
     init();
